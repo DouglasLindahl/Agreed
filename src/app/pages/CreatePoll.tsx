@@ -248,38 +248,46 @@ export default function CreatePoll() {
           </div>
 
           {/* Voting Type */}
+          {/* Voting Type */}
           <div className="mb-8">
             <Label className="text-base mb-3 block">Voting Type</Label>
             <RadioGroup value={votingType} onValueChange={setVotingType}>
-              <div className="flex items-start space-x-3 p-4 rounded-2xl border-2 border-gray-200 hover:border-green-400 transition-colors mb-3">
-                <RadioGroupItem
-                  value="anonymous"
-                  id="anonymous"
-                  className="mt-1"
-                />
-                <div className="flex-1">
-                  <Label
-                    htmlFor="anonymous"
-                    className="font-medium cursor-pointer"
-                  >
-                    Anonymous
-                  </Label>
-                  <p className="text-sm text-gray-500">
-                    No names required, just votes
-                  </p>
+              {[
+                {
+                  value: "anonymous",
+                  title: "Anonymous",
+                  description: "No names required, just votes",
+                },
+                {
+                  value: "names",
+                  title: "Names Required",
+                  description: "See who voted for what",
+                },
+              ].map((option) => (
+                <div
+                  key={option.value}
+                  onClick={() => setVotingType(option.value)} // Entire card clickable
+                  className={`flex items-start space-x-3 p-4 rounded-2xl border-2 transition-colors mb-3 cursor-pointer
+          ${votingType === option.value ? "border-green-500 bg-green-50" : "border-gray-200 hover:border-green-400"}`}
+                >
+                  <RadioGroupItem
+                    value={option.value}
+                    id={option.value}
+                    className="mt-1"
+                  />
+                  <div className="flex-1">
+                    <Label
+                      htmlFor={option.value}
+                      className="font-medium cursor-pointer"
+                    >
+                      {option.title}
+                    </Label>
+                    <p className="text-sm text-gray-500">
+                      {option.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start space-x-3 p-4 rounded-2xl border-2 border-gray-200 hover:border-green-400 transition-colors">
-                <RadioGroupItem value="names" id="names" className="mt-1" />
-                <div className="flex-1">
-                  <Label htmlFor="names" className="font-medium cursor-pointer">
-                    Names Required
-                  </Label>
-                  <p className="text-sm text-gray-500">
-                    See who voted for what
-                  </p>
-                </div>
-              </div>
+              ))}
             </RadioGroup>
           </div>
 

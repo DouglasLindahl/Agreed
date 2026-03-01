@@ -115,7 +115,7 @@ export default function CreatePoll() {
             <div className="bg-gray-50 rounded-2xl p-4 mb-6 border-2 border-dashed border-gray-300">
               <p className="text-sm text-gray-500 mb-2">Your poll link</p>
               <p className="font-mono text-green-700 font-semibold break-all">
-                localhost:5173/{createdPollId}
+                https://agreed-nu.vercel.app/{createdPollId}
               </p>
             </div>
 
